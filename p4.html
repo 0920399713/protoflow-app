@@ -1,0 +1,190 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herb Detail - 藥材詳情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+        :root {
+            --wisdom-ivory: #FDFBF7;
+            --tcm-red: #8B2E2E;
+            --herb-green: #4A5D4E;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+
+        .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .wisdom-card {
+            background-color: var(--wisdom-ivory);
+            border-radius: 24px 24px 0 0;
+            color: #2D2D2D;
+        }
+
+        .illustration-bg {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(18,18,18,1)), url('https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&q=80&w=800');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Custom scrollbar for content area */
+        .content-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .content-scroll::-webkit-scrollbar-thumb {
+            background: #D1D1D1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto min-h-screen flex flex-col relative overflow-hidden">
+
+    <!-- Hero Section: Scientific Illustration -->
+    <div class="relative h-[45vh] w-full flex flex-col justify-end illustration-bg">
+        <!-- Top Navigation Overlay -->
+        <div class="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-20">
+            <button data-goto="p3" class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="flex gap-3">
+                <button class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                    <i class="fa-regular fa-bookmark"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Illustration Label -->
+        <div class="px-6 pb-16 z-10">
+            <span class="px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] tracking-widest text-white/80 uppercase">Scientific Illustration</span>
+            <h1 class="text-4xl font-bold mt-2 serif text-white drop-shadow-lg">人蔘 <span class="text-xl font-light opacity-80">Ginseng</span></h1>
+            <p class="text-white/70 italic text-sm">Panax ginseng C.A. Mey.</p>
+        </div>
+        
+        <!-- Subtle shadow for overlap transition -->
+        <div class="absolute bottom-0 w-full h-12 bg-gradient-to-t from-black/20 to-transparent"></div>
+    </div>
+
+    <!-- Content Area: Culture Wisdom -->
+    <main class="wisdom-card flex-1 -mt-8 relative z-30 p-8 shadow-[0_-10px_40px_rgba(0,0,0,0.3)] content-scroll overflow-y-auto pb-32">
+        
+        <!-- Quick Stats Section -->
+        <div class="flex justify-between items-center mb-8 border-b border-gray-200 pb-6">
+            <div class="text-center">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">藥性</p>
+                <p class="font-bold text-lg" style="color: var(--tcm-red);">微溫</p>
+            </div>
+            <div class="w-[1px] h-8 bg-gray-200"></div>
+            <div class="text-center">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">歸經</p>
+                <p class="font-bold text-lg text-gray-700">脾、肺、心</p>
+            </div>
+            <div class="w-[1px] h-8 bg-gray-200"></div>
+            <div class="text-center">
+                <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">主要功用</p>
+                <p class="font-bold text-lg text-gray-700">大補元氣</p>
+            </div>
+        </div>
+
+        <!-- Culture Wisdom Section -->
+        <section class="space-y-8">
+            <div>
+                <h3 class="flex items-center gap-2 text-sm font-bold tracking-widest mb-4" style="color: var(--herb-green);">
+                    <i class="fa-solid fa-feather-pointed"></i> 
+                    文化白話譯道
+                </h3>
+                <p class="text-lg leading-relaxed serif font-medium">
+                    「人蔘，不僅是植物的根，更是大地的『充電寶』。」
+                </p>
+                <p class="mt-4 text-gray-600 leading-7">
+                    在中醫的視角裡，人蔘被譽為「百草之王」。如果把人體比作一台精密運行的儀器，人蔘的作用就是直接修復最核心的電源系統——「元氣」。
+                </p>
+            </div>
+
+            <div class="bg-white/60 p-5 rounded-2xl border border-gray-100 shadow-sm">
+                <h4 class="font-bold mb-2 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                    現代語境：何時遇見它？
+                </h4>
+                <p class="text-sm text-gray-600 leading-6">
+                    當你感到「身心俱疲、說話都覺得費力」的時候，便是人蔘出場的最佳時機。它能安神定志，讓焦躁的靈魂在草木香中找回平穩。
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-bold mb-2 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                    古籍趣聞
+                </h4>
+                <div class="flex gap-4">
+                    <img src="https://picsum.photos/seed/ink1/100/100" class="w-20 h-20 rounded-xl object-cover grayscale opacity-80" alt="Ink painting">
+                    <p class="text-xs text-gray-500 leading-5">
+                        《神農本草經》記載其為「主五臟，安精神」。古人採蔘前需沐浴更衣，以示對這味「汲取日月精華」之藥材的敬畏。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Bottom Action Area -->
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-6 z-40 bg-gradient-to-t from-white via-white/95 to-transparent">
+        <button data-goto="p7" class="w-full bg-[#121212] text-white py-4 px-6 rounded-2xl flex items-center justify-between shadow-2xl active:scale-95 transition-transform">
+            <div class="flex flex-col items-start">
+                <span class="text-[10px] text-gray-400 uppercase tracking-tighter">Exploring Pairings</span>
+                <span class="font-medium">與你相遇：這款藥材在哪款藥酒中？</span>
+            </div>
+            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </button>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="fixed top-1/2 -right-20 w-64 h-64 bg-green-900/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+
+<script>
+    // Simple navigation handler
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-goto]');
+        if (target) {
+            const pageId = target.getAttribute('data-goto');
+            console.log(`Navigating to: ${pageId}`);
+            // In a real prototype, this would trigger the page transition
+            // For now, we'll just log it.
+            // window.location.href = `${pageId}.html`; 
+        }
+    });
+</script>
+</html>
+
+```
