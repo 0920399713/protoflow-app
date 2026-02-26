@@ -1,0 +1,264 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - 商品詳情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fdfbf7;
+        }
+        .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .product-gradient {
+            background: linear-gradient(180deg, #1a2e25 0%, #244033 100%);
+        }
+        .cream-bg {
+            background-color: #fdfbf7;
+        }
+        .spec-card.active {
+            border-color: #1a2e25;
+            background-color: #f0f4f2;
+        }
+        .rounded-custom {
+            border-radius: 12px;
+        }
+        .sticky-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(26, 46, 37, 0.6);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a2e25;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto shadow-2xl min-h-screen relative overflow-x-hidden">
+
+    <!-- Top Hero Section (Dark Green) -->
+    <div class="product-gradient pt-10 pb-20 relative px-6">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <button data-goto="p6" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="flex gap-3">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Product Image -->
+        <div class="relative z-10 flex justify-center py-4">
+            <img src="https://picsum.photos/seed/herb-tea/400/400" alt="Product" class="w-64 h-64 object-cover rounded-3xl shadow-2xl border-4 border-[#2d4d3d]">
+            <!-- Badge -->
+            <div class="absolute -bottom-4 right-10 bg-[#e4d9c1] text-[#1a2e25] px-4 py-2 rounded-full text-xs font-bold shadow-lg animate-bounce">
+                永續包裝金獎
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Cream) -->
+    <div class="cream-bg -mt-12 rounded-t-[40px] relative z-20 px-6 pt-8 pb-32">
+        <!-- Title & Price -->
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <span class="text-[10px] tracking-[0.2em] text-[#8c8577] font-bold uppercase">HERBAL COLLECTION</span>
+                <h1 class="serif text-2xl font-bold text-[#1a2e25] mt-1">拾光．草本療癒禮盒</h1>
+            </div>
+            <div class="text-right">
+                <p class="text-xs text-[#8c8577] line-through">NT$ 1,280</p>
+                <p class="text-xl font-bold text-[#b45309]">NT$ 880</p>
+            </div>
+        </div>
+
+        <!-- Rating & Badges -->
+        <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center text-[#f59e0b] text-xs">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+                <span class="ml-2 text-[#8c8577]">(128 則評價)</span>
+            </div>
+            <div class="bg-[#eef1ef] text-[#4a6b5a] px-2 py-1 rounded text-[10px] font-medium">
+                剩餘 12 件
+            </div>
+        </div>
+
+        <!-- Specification Selector -->
+        <div class="mb-8">
+            <h3 class="text-sm font-bold text-[#1a2e25] mb-3">選擇規格 Spec Selector</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Gift Set -->
+                <button class="spec-card active border-2 border-[#1a2e25] p-3 rounded-custom text-left transition-all">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-[#1a2e25]">典藏禮盒裝</span>
+                        <i class="fa-solid fa-circle-check text-[#1a2e25]"></i>
+                    </div>
+                    <p class="text-[10px] text-[#555]">含特製濾茶器與手繪圖譜</p>
+                </button>
+                <!-- Experience Pack -->
+                <button class="spec-card border-2 border-transparent bg-white shadow-sm p-3 rounded-custom text-left transition-all">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-[#8c8577]">隨行體驗包</span>
+                        <div class="w-4 h-4 rounded-full border border-gray-300"></div>
+                    </div>
+                    <p class="text-[10px] text-[#8c8577]">環保牛皮紙袋 5 入組</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sustainability Concept -->
+        <div class="mb-8">
+            <div class="flex items-center gap-2 mb-3">
+                <div class="w-8 h-[1px] bg-[#1a2e25]"></div>
+                <h3 class="text-sm font-bold text-[#1a2e25] tracking-widest uppercase">Sustainable Design</h3>
+            </div>
+            <div class="bg-[#1a2e25] rounded-custom p-5 text-white overflow-hidden relative">
+                <div class="relative z-10">
+                    <h4 class="serif text-lg mb-2">零廢棄摺疊包裝</h4>
+                    <p class="text-xs leading-relaxed opacity-80">
+                        採用甘蔗渣再生紙材，不使用任何化學黏著劑。獨特的結構設計，展開後即可作為藥草圖鑑裝飾畫。
+                    </p>
+                </div>
+                <i class="fa-solid fa-leaf absolute -bottom-4 -right-4 text-white/10 text-8xl rotate-12"></i>
+            </div>
+        </div>
+
+        <!-- Packaging Diagram Expansion -->
+        <div class="mb-8">
+            <h3 class="text-sm font-bold text-[#1a2e25] mb-4">包裝展開概念 Unfolding Concept</h3>
+            <div class="bg-white p-4 rounded-custom shadow-sm border border-[#e4d9c1]/50">
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="aspect-square bg-[#f0f4f2] rounded-lg flex flex-col items-center justify-center p-2 text-center">
+                        <i class="fa-solid fa-box-open text-[#4a6b5a] mb-2"></i>
+                        <span class="text-[9px] text-[#4a6b5a]">1. 展開</span>
+                    </div>
+                    <div class="aspect-square bg-[#f0f4f2] rounded-lg flex flex-col items-center justify-center p-2 text-center">
+                        <i class="fa-solid fa-scroll text-[#4a6b5a] mb-2"></i>
+                        <span class="text-[9px] text-[#4a6b5a]">2. 閱覽圖譜</span>
+                    </div>
+                    <div class="aspect-square bg-[#f0f4f2] rounded-lg flex flex-col items-center justify-center p-2 text-center">
+                        <i class="fa-solid fa-seedling text-[#4a6b5a] mb-2"></i>
+                        <span class="text-[9px] text-[#4a6b5a]">3. 埋入土壤</span>
+                    </div>
+                </div>
+                <p class="text-[11px] mt-4 text-[#8c8577] italic text-center">
+                    * 包裝紙漿內含多種草本種子，使用後可埋入盆栽重獲新生。
+                </p>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="mb-8">
+            <div class="flex border-b border-[#e4d9c1] mb-4">
+                <button class="pb-2 px-4 text-sm font-bold border-b-2 border-[#1a2e25] text-[#1a2e25]">產品詳情</button>
+                <button class="pb-2 px-4 text-sm font-medium text-[#8c8577]">成分表</button>
+                <button class="pb-2 px-4 text-sm font-medium text-[#8c8577]">配送須知</button>
+            </div>
+            <div class="text-xs leading-relaxed text-[#555] space-y-3">
+                <p>● 內容物：特選乾燥當歸、薄荷、紫蘇、陳皮（依季節微調）。</p>
+                <p>● 淨重：150g ± 5%</p>
+                <p>● 產地：台灣屏東有機藥草園地</p>
+                <p>● 保存期限：常溫陰涼處 6 個月，建議開封後儘速享用。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/80 backdrop-blur-xl border-t border-[#e4d9c1] p-4 flex items-center gap-3 z-50">
+        <button class="w-14 h-14 flex flex-col items-center justify-center text-[#1a2e25] border border-[#e4d9c1] rounded-custom">
+            <i class="fa-regular fa-heart"></i>
+            <span class="text-[10px] mt-1">收藏</span>
+        </button>
+        <button data-goto="p9" class="flex-1 h-14 bg-[#eef1ef] text-[#1a2e25] font-bold rounded-custom text-sm flex items-center justify-center">
+            加入購物車
+        </button>
+        <button data-goto="p9" class="flex-1 h-14 bg-[#1a2e25] text-white font-bold rounded-custom text-sm flex items-center justify-center">
+            立即購買
+        </button>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="transition" class="fixed inset-0 bg-[#1a2e25] z-[100] transform translate-y-full transition-transform duration-500 ease-in-out pointer-events-none"></div>
+
+    <script>
+        document.querySelectorAll('[data-goto]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-goto');
+                const transition = document.getElementById('transition');
+                transition.classList.remove('translate-y-full');
+                setTimeout(() => {
+                    // In a real app, this would change the window.location or component state
+                    console.log('Navigating to:', target);
+                    // For the prototype, we simply reload with visual cue if it were a multi-page setup
+                    // Here we'll just mock the effect
+                    transition.classList.add('translate-y-full');
+                }, 500);
+            });
+        });
+
+        // Spec Selection Mock
+        const specCards = document.querySelectorAll('.spec-card');
+        specCards.forEach(card => {
+            card.addEventListener('click', () => {
+                specCards.forEach(c => {
+                    c.classList.remove('active', 'border-[#1a2e25]');
+                    c.classList.add('border-transparent', 'bg-white');
+                    c.querySelector('div i')?.classList.remove('fa-solid', 'fa-circle-check', 'text-[#1a2e25]');
+                    c.querySelector('div .w-4')?.classList.add('border', 'border-gray-300');
+                    c.querySelector('span').classList.remove('text-[#1a2e25]');
+                    c.querySelector('span').classList.add('text-[#8c8577]');
+                });
+                
+                card.classList.add('active', 'border-[#1a2e25]');
+                card.classList.remove('border-transparent', 'bg-white');
+                const indicator = card.querySelector('div i') || card.querySelector('div .w-4');
+                if (indicator.classList.contains('w-4')) {
+                    // Swap dot for check
+                    indicator.outerHTML = '<i class="fa-solid fa-circle-check text-[#1a2e25]"></i>';
+                }
+                card.querySelector('span').classList.add('text-[#1a2e25]');
+                card.querySelector('span').classList.remove('text-[#8c8577]');
+            });
+        });
+    </script>
+
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+```
