@@ -1,0 +1,193 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都市採藥 - Splash Screen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #1A3022;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .bg-forest {
+            background-color: #1A3022;
+        }
+
+        .gold-glow {
+            text-shadow: 
+                0 0 2px #D4AF37,
+                0 0 5px rgba(212, 175, 55, 0.5);
+            -webkit-text-stroke: 0.5px #D4AF37;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        .fade-in-delayed {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.8s forwards;
+        }
+
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Transition overlay */
+        #transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1A3022;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .transition-active {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Transition Overlay for Auto-Jump -->
+    <div id="transition-overlay"></div>
+
+    <!-- Page Content (p1) -->
+    <div id="p1" class="relative w-full h-screen flex flex-col items-center justify-center p-6 overflow-hidden select-none">
+        
+        <!-- Abstract Background Elements (Leaf Silhouettes) -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <i class="fa-solid fa-leaf text-9xl absolute -top-10 -left-10 rotate-45"></i>
+            <i class="fa-solid fa-seedling text-9xl absolute bottom-20 -right-10 -rotate-12"></i>
+            <i class="fa-solid fa-tree text-9xl absolute top-1/2 -left-20 opacity-5"></i>
+        </div>
+
+        <!-- Central Logo Area -->
+        <div class="z-10 text-center fade-in-up">
+            <div class="mb-4 flex justify-center">
+                <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent rounded-full mb-8"></div>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-black tracking-widest text-white gold-glow floating mb-6">
+                都市採藥
+            </h1>
+            
+            <div class="h-[1px] w-24 bg-[#D4AF37] mx-auto opacity-50 mb-8"></div>
+        </div>
+
+        <!-- Slogan Area -->
+        <div class="z-10 text-center fade-in-delayed">
+            <p class="text-lg md:text-xl font-light tracking-[0.3em] text-stone-300 mb-2">
+                Urban Forager
+            </p>
+            <p class="text-sm md:text-base tracking-[0.15em] text-stone-400 opacity-80">
+                「在鋼筋水泥中，找回自然的節奏。」
+            </p>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="absolute bottom-16 flex flex-col items-center fade-in-delayed" style="animation-delay: 1.2s">
+            <div class="w-12 h-12 border-t-2 border-r-2 border-[#D4AF37] rounded-full animate-spin mb-4 opacity-40"></div>
+            <span class="text-[10px] tracking-[0.5em] text-[#D4AF37] opacity-60 uppercase">Initializing Nature</span>
+        </div>
+
+        <!-- Manual Navigation Fallback / Interaction -->
+        <button 
+            data-goto="p2" 
+            class="absolute inset-0 w-full h-full bg-transparent cursor-pointer z-20 outline-none focus:outline-none"
+            aria-label="Skip to Home">
+        </button>
+    </div>
+
+    <!-- Scripting for Automatic Jump Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logic: Auto-transition after animation
+            const autoJumpDelay = 3500; // 3.5 seconds
+            const overlay = document.getElementById('transition-overlay');
+
+            // Global navigation handler
+            const handleNavigation = (targetId) => {
+                overlay.classList.add('transition-active');
+                setTimeout(() => {
+                    console.log(`Navigating to: ${targetId}`);
+                    // In a real multi-page app, this would be: window.location.href = targetId + ".html";
+                    // For this prototype, we'll alert or visually simulate the move.
+                    if(targetId === 'p2') {
+                        // For prototype purposes, show alert if jumping to a non-existent page in this single file context
+                        // but normally you would switch visibility of page containers.
+                        alert(`跳轉中... 目標頁面 ID: ${targetId} (首頁與任務雷達)`);
+                    } else {
+                        alert(`Navigation triggered to: ${targetId}`);
+                    }
+                }, 800);
+            };
+
+            // Setup Auto Jump
+            const timer = setTimeout(() => {
+                handleNavigation('p2');
+            }, autoJumpDelay);
+
+            // Handle manual clicks
+            document.querySelectorAll('[data-goto]').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    clearTimeout(timer); // Prevent double jump
+                    const targetId = e.currentTarget.getAttribute('data-goto');
+                    handleNavigation(targetId);
+                });
+            });
+        });
+    </script>
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
+```
