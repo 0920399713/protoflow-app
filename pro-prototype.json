@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "topic": "Role:\n你是一位資深 UI/UX 設計師與產品架構師，專精於將「視覺傳達設計」轉化為數位互動體驗。你現在要協助我完成畢業製作「城中採藥」App 的核心邏輯。\n\nContext:\n\n專案背景： 中國科技大學視覺傳達設計系畢業製作。\n\n專案核心： 「文化轉譯」——將艱深的中醫藥知識轉化為當代美學。\n\n視覺配色（嚴格對齊圖示）： * 主色（深）： 森林深綠 #1A3022 (用於頂部背景與主按鈕)。\n\n底色（淺）： 米白紙張色 #F5F5F0 (用於內容卡片與背景)。\n\n文字色： 深墨綠 #0D1A12 (標題) 與 灰綠 #6E7A70 (內文)。\n\n點綴色： 橄欖金 #8B8B5E (用於圖示與強調)。\n\nTask:\n請依據 ProtoFLOW v0.3 框架，生成本 App 的「核心流向規格書」：\n\n1. User Goal (用戶目標)\n探索學習： 透過森林綠調的「藥材圖鑑」，以現代插畫消除中醫的陳舊感。\n\n實地體驗： 利用地圖雷達功能，在都市鋼筋水泥中定位綠意藥材。\n\n文化購買： 在具備設計質感的商城中，購買轉譯後的四季藥酒與茶飲。\n\n2. Screen Flow Logic (螢幕流程邏輯)\n[Screen A] 啟動頁 (Splash)：\n\n組件： Logotype_Primary (白字/金邊) 位於中央。\n\n標語： 「都市採藥 —— 在鋼筋水泥中，找回自然的節奏。」\n\n邏輯： On_Load -> Fade_In 動畫 -> Maps_to(Screen_B)。\n\n[Screen B] 首頁/任務雷達：\n\n組件： 頂部深綠區塊 Season_Status_Bar，下方米白卡片 Daily_Advice。\n\n邏輯： 偵測當前月份 -> 顯示「穀雨將至，適合飲用清熱茶飲」。\n\n快速路徑： 圓形圖示按鈕組：【尋找藥草】、【今日特選商品】。\n\n[Screen C3] 藥材詳情：\n\n架構： 上方為 Scientific_Illustration (手繪植物插畫位)；下方為 Culture_Wisdom (白話文轉譯)。\n\n關聯按鈕： 「與你相遇：這款藥材出現在你的『四季藥酒』哪一款中？」 -> 點擊跳轉至商城 D2。\n\n[Screen D2] 商城詳情：\n\n視覺： 深綠背景商品圖 + 米白內容區塊。\n\n故事內容： 強調「永續材質」與「天人合一」包裝概念。\n\n規格邏輯： Selector (禮盒裝 / 體驗包)。\n\n3. UI Components & Interaction (組件與互動)\n視覺規範：\n\n格線系統： 全域疊加細微的格線背景，營造設計工程圖的精密感。\n\n圓角設定： 內容卡片使用 24px 大圓角，按鈕使用 12px 中圓角。\n\n微互動：\n\n四季濾鏡 (Seasonal UI)： 系統偵測為冬季時，全域 Primary_Color 自動從中綠切換為沉穩的深綠色（對齊圖片 A 區色調）。\n\n轉場效果： 點擊列表中的藥材插畫時，圖片透過 Shared_Element 直接放大至詳情頁 Hero 位。\n\n字體規範：\n\n標題： 思源宋體 (Noto Serif TC) - 展現人文氣息。\n\n內文： 思源黑體 (Noto Sans TC) - 確保數位讀取的清晰度。\n\n4. Design Logic Annotation (設計註釋)\n[Scan_Entry]： Tap(QR_Icon) -> 開啟相機。掃描實體包裝 QR Code 後，觸發 Logic: Match_ID 直接跳轉至對應藥材故事頁。\n\n[Design_Story]： 在會員中心 Screen_E 增加 Action: Open_Portal，展示企劃書中的設計策略與包裝展開圖。",
+  "createdAt": "2026-02-26T15:19:47.166Z",
+  "pages": [
+    {
+      "id": "p1",
+      "title": "Splash Screen - 啟動頁",
+      "description": "視覺：森林深綠 #1A3022 背景。中央放置 Logotype_Primary (白字金邊)，下方標語「都市採藥 —— 在鋼筋水泥中，找回自然的節奏。」字體使用思源宋體。邏輯：自動播放 Fade_In 動畫後跳轉至首頁。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p2"
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "Home / Mission Radar - 首頁與任務雷達",
+      "description": "視覺：頂部為 Season_Status_Bar (森林深綠)，顯示當前節氣「穀雨」。下方為米白卡片 (#F5F5F0) 顯示 Daily_Advice。底部包含圓形圖示按鈕組：尋找藥草、今日特選。全域細微格線背景。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p3",
+        "p5",
+        "p6",
+        "p8"
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "Modern Herbarium - 現代藥材圖鑑",
+      "description": "視覺：格線系統排列的清單，展示當代插畫風格的藥材縮圖。使用 Shared_Element 轉場效果。字體：標題思源宋體，內文思源黑體。色調依季節自動切換濾鏡。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p2",
+        "p4"
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "Herb Detail - 藥材詳情 (C3)",
+      "description": "視覺：Hero 位顯示 Scientific_Illustration (手繪植物插畫)。內容區為 Culture_Wisdom (米白色塊，24px 圓角)，以白話文轉譯中醫知識。底部有導購按鈕「與你相遇：這款藥材在哪款藥酒中？」",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p3",
+        "p7"
+      ]
+    },
+    {
+      "id": "p5",
+      "title": "Eco-Map Radar - 城市生態雷達",
+      "description": "視覺：地圖介面疊加橄欖金 (#8B8B5E) 的掃描雷達圈。標記都市中的綠意點位，點擊點位可彈出藥材預覽卡片。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p2",
+        "p4"
+      ]
+    },
+    {
+      "id": "p6",
+      "title": "Cultural Marketplace - 文化商城首頁",
+      "description": "視覺：強調轉譯美學的商品陳列。背景為米白紙張色。分類包含四季藥酒、漢方茶飲。商品卡片使用 24px 大圓角設計。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p2",
+        "p7",
+        "p9",
+        "p3",
+        "p8",
+        "p6"
+      ]
+    },
+    {
+      "id": "p7",
+      "title": "Product Detail - 商品詳情 (D2)",
+      "description": "視覺：上方深綠背景商品圖，下方米白內容區。講述永續材質與包裝展開圖概念。提供規格選擇器 (禮盒裝/體驗包)，按鈕使用 12px 中圓角。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p6",
+        "p9"
+      ]
+    },
+    {
+      "id": "p8",
+      "title": "Scan Entry - 藥材掃描入口",
+      "description": "視覺：相機掃描介面，帶有精密設計工程圖格線。邏輯：掃描實體包裝 QR Code 後，觸發 Logic: Match_ID 並跳轉至對應的藥材詳情頁。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p4"
+      ]
+    },
+    {
+      "id": "p9",
+      "title": "Member Center & Design Story - 會員中心與設計故事",
+      "description": "視覺：個人檔案管理。特色功能 [Design_Story]：點擊 Open_Portal 按鈕進入，展示本畢業製作的設計策略、視覺規範與包裝工藝細節。",
+      "status": "completed",
+      "suggestedNavigation": [
+        "p2",
+        "p6"
+      ]
+    }
+  ]
+}
