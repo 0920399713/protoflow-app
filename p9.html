@@ -1,0 +1,318 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Center & Design Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .design-portal-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+
+        .transition-view {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto relative min-h-screen">
+
+    <!-- MAIN MEMBER VIEW -->
+    <div id="member-view" class="pb-24 pt-8 px-6 transition-view opacity-100">
+        <!-- Profile Header -->
+        <div class="flex items-center space-x-4 mb-8">
+            <div class="relative">
+                <img src="https://picsum.photos/seed/user/100/100" alt="Avatar" class="w-20 h-20 rounded-full border-2 border-emerald-500/50 p-1">
+                <div class="absolute bottom-0 right-0 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full">LV.12</div>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold">林小曼</h1>
+                <p class="text-slate-400 text-sm">城市草本探索者</p>
+                <div class="flex mt-2 space-x-3 text-xs">
+                    <span class="text-emerald-400"><i class="fas fa-leaf mr-1"></i> 24 採集</span>
+                    <span class="text-amber-400"><i class="fas fa-award mr-1"></i> 12 勳章</span>
+                </div>
+            </div>
+            <button class="ml-auto text-slate-400 hover:text-white">
+                <i class="fas fa-cog text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-3 gap-3 mb-8">
+            <div class="glass-card rounded-2xl p-4 text-center">
+                <div class="text-xl font-bold text-emerald-400">128</div>
+                <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">探索點數</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4 text-center">
+                <div class="text-xl font-bold text-emerald-400">08</div>
+                <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">完成任務</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4 text-center">
+                <div class="text-xl font-bold text-emerald-400">03</div>
+                <div class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">待領包裹</div>
+            </div>
+        </div>
+
+        <!-- Menu List -->
+        <div class="space-y-3 mb-8">
+            <div data-goto="p6" class="glass-card flex items-center p-4 rounded-xl cursor-pointer hover:bg-slate-700/50 transition">
+                <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-400 mr-4">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <span class="flex-1 font-medium">我的訂單與交易</span>
+                <i class="fas fa-chevron-right text-slate-500 text-sm"></i>
+            </div>
+            <div data-goto="p3" class="glass-card flex items-center p-4 rounded-xl cursor-pointer hover:bg-slate-700/50 transition">
+                <div class="w-10 h-10 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 mr-4">
+                    <i class="fas fa-book-medical"></i>
+                </div>
+                <span class="flex-1 font-medium">個人收藏圖鑑</span>
+                <i class="fas fa-chevron-right text-slate-500 text-sm"></i>
+            </div>
+            <div class="glass-card flex items-center p-4 rounded-xl cursor-pointer hover:bg-slate-700/50 transition">
+                <div class="w-10 h-10 bg-purple-500/10 rounded-full flex items-center justify-center text-purple-400 mr-4">
+                    <i class="fas fa-history"></i>
+                </div>
+                <span class="flex-1 font-medium">掃描歷史紀錄</span>
+                <i class="fas fa-chevron-right text-slate-500 text-sm"></i>
+            </div>
+        </div>
+
+        <!-- SPECIAL PORTAL BUTTON -->
+        <div class="mt-12 text-center">
+            <div class="inline-block p-1 rounded-full bg-gradient-to-r from-amber-500 via-emerald-500 to-amber-500 animate-pulse-slow">
+                <button id="open-portal-btn" class="bg-slate-900 text-white px-8 py-4 rounded-full flex items-center space-x-3 gold-glow">
+                    <i class="fas fa-door-open text-amber-400"></i>
+                    <span class="font-bold tracking-widest">進入設計故事展廳</span>
+                </button>
+            </div>
+            <p class="text-slate-500 text-[10px] mt-4 uppercase tracking-[0.2em]">Graduation Project 2024 • Design Strategy</p>
+        </div>
+    </div>
+
+    <!-- DESIGN STORY PORTAL (Initially Hidden) -->
+    <div id="design-story-portal" class="fixed inset-0 z-50 design-portal-gradient overflow-y-auto scroll-hide translate-y-full transition-view">
+        <div class="relative min-h-screen p-6">
+            <!-- Close Portal -->
+            <button id="close-portal-btn" class="absolute top-6 right-6 w-10 h-10 glass-card rounded-full flex items-center justify-center text-white z-10">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Header -->
+            <div class="mt-12 mb-10 text-center">
+                <h2 class="font-serif text-3xl italic text-amber-200 mb-2">Herbary Pulse</h2>
+                <div class="h-[1px] w-24 bg-amber-500/30 mx-auto mb-2"></div>
+                <p class="text-xs text-slate-400 tracking-[0.3em] uppercase">設計故事與視覺規範</p>
+            </div>
+
+            <!-- Strategy Section -->
+            <section class="mb-12">
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl font-serif text-amber-500 mr-4">01.</span>
+                    <h3 class="text-xl font-bold">設計策略 <span class="text-xs block text-slate-500 mt-1 uppercase tracking-wider">Core Strategy</span></h3>
+                </div>
+                <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                    本計畫旨在橋接「古代草本智慧」與「現代城市生活」。透過 AR 互動與數位採集，讓沉睡在傳統藥鋪的文化基因重新在都市街頭躍動。
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-4 rounded-lg">
+                        <i class="fas fa-fingerprint text-emerald-400 mb-2"></i>
+                        <h4 class="text-xs font-bold mb-1">數位化轉譯</h4>
+                        <p class="text-[10px] text-slate-400 leading-tight">將藥材特徵轉化為幾何視覺語彙</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-lg">
+                        <i class="fas fa-broadcast-tower text-blue-400 mb-2"></i>
+                        <h4 class="text-xs font-bold mb-1">生態共感</h4>
+                        <p class="text-[10px] text-slate-400 leading-tight">建立都市綠地與公民的數據連結</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Standards -->
+            <section class="mb-12">
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl font-serif text-amber-500 mr-4">02.</span>
+                    <h3 class="text-xl font-bold">視覺規範 <span class="text-xs block text-slate-500 mt-1 uppercase tracking-wider">Visual Identity</span></h3>
+                </div>
+                <!-- Color Palette -->
+                <div class="flex space-x-2 mb-6">
+                    <div class="flex-1">
+                        <div class="h-16 rounded-t-lg bg-[#0f172a] border border-slate-700"></div>
+                        <div class="bg-slate-800 p-2 rounded-b-lg text-center">
+                            <span class="text-[10px] font-mono">#0F172A</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="h-16 rounded-t-lg bg-[#10b981]"></div>
+                        <div class="bg-slate-800 p-2 rounded-b-lg text-center">
+                            <span class="text-[10px] font-mono">#10B981</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="h-16 rounded-t-lg bg-[#d4af37]"></div>
+                        <div class="bg-slate-800 p-2 rounded-b-lg text-center">
+                            <span class="text-[10px] font-mono">#D4AF37</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-slate-300 text-sm mb-4">選用森林深綠作為主基調，輔以琥珀金象徵藥材炮製後的精華色彩。</p>
+                <img src="https://picsum.photos/seed/p9-standards/600/300" alt="Identity" class="w-full h-40 object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+            </section>
+
+            <!-- Packaging Craft -->
+            <section class="mb-12">
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl font-serif text-amber-500 mr-4">03.</span>
+                    <h3 class="text-xl font-bold">包裝工藝 <span class="text-xs block text-slate-500 mt-1 uppercase tracking-wider">Packaging Details</span></h3>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex space-x-4">
+                        <img src="https://picsum.photos/seed/craft1/150/150" alt="Craft" class="w-24 h-24 rounded-lg object-cover">
+                        <div>
+                            <h4 class="font-bold text-amber-200">手工紙質標籤</h4>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">採用再生漢麻紙，結合凸版印刷工藝，呈現草本植物的原始肌理感。</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <img src="https://picsum.photos/seed/craft2/150/150" alt="Craft" class="w-24 h-24 rounded-lg object-cover">
+                        <div>
+                            <h4 class="font-bold text-amber-200">智能封條設計</h4>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">內嵌 NFC 晶片，消費者開箱時即可透過感應與 App 連動，解鎖獨家故事。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Disclaimer -->
+            <div class="text-center py-10 opacity-30">
+                <p class="text-[10px] tracking-widest italic">All rights reserved. Design Project 2024.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-slate-900/90 backdrop-blur-lg border-t border-slate-800 px-8 py-3 z-40">
+        <div class="flex justify-between items-center">
+            <button data-goto="p2" class="flex flex-col items-center text-slate-500 hover:text-emerald-500 transition">
+                <i class="fas fa-compass text-xl"></i>
+                <span class="text-[10px] mt-1">首頁</span>
+            </button>
+            <button data-goto="p5" class="flex flex-col items-center text-slate-500 hover:text-emerald-500 transition">
+                <i class="fas fa-map-marked-alt text-xl"></i>
+                <span class="text-[10px] mt-1">生態雷達</span>
+            </button>
+            <div class="relative -top-6">
+                <button data-goto="p8" class="w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 border-4 border-slate-900">
+                    <i class="fas fa-qrcode text-2xl"></i>
+                </button>
+            </div>
+            <button data-goto="p6" class="flex flex-col items-center text-slate-500 hover:text-emerald-500 transition">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-[10px] mt-1">商城</span>
+            </button>
+            <button data-goto="p9" class="flex flex-col items-center text-emerald-500">
+                <i class="fas fa-user-circle text-xl"></i>
+                <span class="text-[10px] mt-1 font-bold">我的</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // Navigation Handler
+        document.querySelectorAll('[data-goto]').forEach(element => {
+            element.addEventListener('click', () => {
+                const targetId = element.getAttribute('data-goto');
+                console.log(`Navigating to: ${targetId}`);
+                // In actual deployment, this would handle page changes.
+                // For this prototype, we'll just alert or simulate.
+                if (targetId === 'p9') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    // Logic to show other pages would go here
+                    alert('正在前往頁面: ' + targetId);
+                }
+            });
+        });
+
+        // Design Portal Logic
+        const portal = document.getElementById('design-story-portal');
+        const memberView = document.getElementById('member-view');
+        const openBtn = document.getElementById('open-portal-btn');
+        const closeBtn = document.getElementById('close-portal-btn');
+
+        openBtn.addEventListener('click', () => {
+            portal.classList.remove('translate-y-full');
+            portal.classList.add('translate-y-0');
+            memberView.classList.replace('opacity-100', 'opacity-0');
+            document.body.style.overflow = 'hidden'; // Prevent main body scrolling
+        });
+
+        closeBtn.addEventListener('click', () => {
+            portal.classList.replace('translate-y-0', 'translate-y-full');
+            memberView.classList.replace('opacity-0', 'opacity-100');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Simple entrance animation simulation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
+```
