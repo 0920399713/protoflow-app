@@ -1,0 +1,201 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Entry - 藥材掃描入口</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes scan-line {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-animation {
+            animation: scan-line 3s linear infinite;
+        }
+        .grid-overlay {
+            background-image: 
+                linear-gradient(rgba(0, 255, 170, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 170, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .pulse-border {
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+        }
+        .corner-bracket {
+            width: 40px;
+            height: 40px;
+            border-color: #00ffaa;
+            position: absolute;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans overflow-hidden">
+
+    <!-- Mock Camera Background -->
+    <div class="fixed inset-0 z-0">
+        <img src="https://picsum.photos/seed/p8/800/1200" alt="Camera View" class="w-full h-full object-cover opacity-60 grayscale-[0.5]">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
+    </div>
+
+    <!-- UI Overlay Layer -->
+    <div class="relative z-10 h-screen flex flex-col justify-between">
+        
+        <!-- Header -->
+        <header class="p-6 flex items-center justify-between">
+            <button data-goto="p2" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="text-center">
+                <h1 class="text-sm tracking-[0.2em] font-light text-emerald-400">HERB SCANNER</h1>
+                <p class="text-xs text-white/50">藥材辨識模式</p>
+            </div>
+            <button class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                <i class="fa-solid fa-circle-info"></i>
+            </button>
+        </header>
+
+        <!-- Main Scanning Area -->
+        <main class="flex-grow flex items-center justify-center px-8">
+            <div class="relative w-full aspect-square max-w-sm">
+                <!-- Precision Grid lines -->
+                <div class="absolute inset-0 grid-overlay border border-emerald-500/20"></div>
+
+                <!-- Corners -->
+                <div class="corner-bracket border-t-4 border-l-4 top-0 left-0"></div>
+                <div class="corner-bracket border-t-4 border-r-4 top-0 right-0"></div>
+                <div class="corner-bracket border-b-4 border-l-4 bottom-0 left-0"></div>
+                <div class="corner-bracket border-b-4 border-r-4 bottom-0 right-0"></div>
+
+                <!-- HUD Elements -->
+                <div class="absolute -top-12 left-0 text-[10px] font-mono text-emerald-400/70 flex flex-col">
+                    <span>TARGETING: AUTO_LOCK</span>
+                    <span>RESOLUTION: 4K_HDR</span>
+                </div>
+                <div class="absolute -bottom-12 right-0 text-[10px] font-mono text-emerald-400/70 text-right">
+                    <span>COORDS: 25.0330, 121.5654</span>
+                    <span>SIGNAL: STABLE</span>
+                </div>
+
+                <!-- Central Focus Square (Interactivity Trigger) -->
+                <div 
+                    data-goto="p4" 
+                    class="absolute inset-8 border border-white/30 flex items-center justify-center cursor-pointer group"
+                >
+                    <!-- Scanning Bar -->
+                    <div class="absolute left-0 right-0 h-[2px] bg-emerald-400 shadow-[0_0_15px_#00ffaa] scan-animation z-20"></div>
+                    
+                    <!-- Center Aim -->
+                    <div class="w-4 h-4 border border-emerald-400 rotate-45 group-hover:scale-150 transition-transform"></div>
+                    
+                    <!-- Tap Simulation Tooltip -->
+                    <div class="absolute bottom-4 text-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <p class="text-[10px] uppercase tracking-widest">Tap to simulate match</p>
+                    </div>
+                </div>
+
+                <!-- Real-time analysis labels -->
+                <div class="absolute top-1/4 -right-4 bg-emerald-500/80 px-2 py-1 text-[8px] font-bold rounded animate-pulse">
+                    MATCHING...
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Actions -->
+        <footer class="p-10">
+            <div class="flex items-center justify-around mb-8">
+                <button class="flex flex-col items-center space-y-2 opacity-60 hover:opacity-100 transition-opacity">
+                    <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-tighter">Flash</span>
+                </button>
+
+                <!-- Trigger Button -->
+                <button data-goto="p4" class="relative">
+                    <div class="w-20 h-20 rounded-full border-4 border-emerald-400 flex items-center justify-center">
+                        <div class="w-16 h-16 rounded-full bg-white scale-90 hover:scale-100 transition-transform active:bg-emerald-200"></div>
+                    </div>
+                    <!-- Outer ring effect -->
+                    <div class="absolute inset-0 border border-white/20 rounded-full animate-ping"></div>
+                </button>
+
+                <button class="flex flex-col items-center space-y-2 opacity-60 hover:opacity-100 transition-opacity">
+                    <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center overflow-hidden">
+                        <img src="https://picsum.photos/seed/album/50/50" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-[10px] uppercase tracking-tighter">Album</span>
+                </button>
+            </div>
+
+            <div class="text-center">
+                <p class="text-xs text-white/40 max-w-[200px] mx-auto">
+                    請對準藥材包裝上的 <span class="text-emerald-400 font-bold">QR Code</span> 或產品條碼進行識別
+                </p>
+            </div>
+        </footer>
+
+        <!-- Bottom Navigation Mock -->
+        <nav class="bg-black/80 backdrop-blur-xl border-t border-white/10 flex justify-around py-4 pb-8">
+            <button data-goto="p2" class="text-white/40 hover:text-white transition-colors">
+                <i class="fa-solid fa-house text-xl"></i>
+            </button>
+            <button data-goto="p3" class="text-white/40 hover:text-white transition-colors">
+                <i class="fa-solid fa-book-medical text-xl"></i>
+            </button>
+            <button data-goto="p8" class="text-emerald-400">
+                <i class="fa-solid fa-expand text-xl"></i>
+            </button>
+            <button data-goto="p5" class="text-white/40 hover:text-white transition-colors">
+                <i class="fa-solid fa-compass text-xl"></i>
+            </button>
+            <button data-goto="p9" class="text-white/40 hover:text-white transition-colors">
+                <i class="fa-solid fa-user text-xl"></i>
+            </button>
+        </nav>
+    </div>
+
+    <!-- UI Interaction Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('[data-goto]');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetPage = button.getAttribute('data-goto');
+                    console.log(`Navigating to: ${targetPage}`);
+                    // In a real prototype, this would trigger page visibility logic
+                    // For this single-file demo, we just log it.
+                });
+            });
+
+            // Simulated Scan Effect
+            const centralFocus = document.querySelector('[data-goto="p4"]');
+            centralFocus.addEventListener('mousedown', () => {
+                centralFocus.classList.add('pulse-border');
+                setTimeout(() => {
+                    centralFocus.classList.remove('pulse-border');
+                }, 500);
+            });
+        });
+    </script>
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+```
