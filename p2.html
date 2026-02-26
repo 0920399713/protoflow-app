@@ -1,0 +1,236 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Radar - 首頁與任務雷達</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDFDFB;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+        .season-gradient {
+            background: linear-gradient(to bottom, #1B3022, #2D5A27);
+        }
+        .glass-card {
+            background: rgba(245, 245, 240, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .radar-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .float-btn {
+            box-shadow: 0 10px 25px -5px rgba(27, 48, 34, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-24">
+
+    <!-- Season Status Bar -->
+    <header class="season-gradient text-white px-6 pt-12 pb-8 rounded-b-[40px] shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-8 opacity-10 text-8xl font-bold">穀雨</div>
+        <div class="relative z-10 flex justify-between items-center">
+            <div>
+                <p class="text-xs opacity-80 tracking-widest uppercase mb-1">Current Season</p>
+                <h1 class="text-3xl font-bold serif tracking-wider">穀雨 <span class="text-sm font-normal opacity-70 ml-2">Grain Rain</span></h1>
+            </div>
+            <div class="bg-white/20 p-2 rounded-full backdrop-blur-md" data-goto="p9">
+                <img src="https://picsum.photos/seed/user1/100/100" alt="Profile" class="w-10 h-10 rounded-full border-2 border-white/50">
+            </div>
+        </div>
+        <div class="mt-6 flex gap-3 overflow-x-auto no-scrollbar pb-2">
+            <span class="px-3 py-1 bg-white/10 rounded-full text-xs whitespace-nowrap border border-white/20">雨生百穀</span>
+            <span class="px-3 py-1 bg-white/10 rounded-full text-xs whitespace-nowrap border border-white/20">溫和潤澤</span>
+            <span class="px-3 py-1 bg-white/20 rounded-full text-xs whitespace-nowrap border border-white/40">去濕養肝</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-5 -mt-6 relative z-20 space-y-6">
+        
+        <!-- Daily Advice Card -->
+        <section class="glass-card bg-[#F5F5F0] p-6 rounded-3xl shadow-sm border border-[#E5E5DF]">
+            <div class="flex items-start justify-between mb-4">
+                <div class="bg-[#2D5A27] text-white p-2 rounded-xl">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <span class="text-[10px] font-bold text-[#2D5A27] uppercase tracking-tighter bg-[#2D5A27]/10 px-2 py-1 rounded">Daily Advice</span>
+            </div>
+            <h3 class="serif text-xl font-bold text-[#1B3022] mb-2">今日時節叮嚀</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+                穀雨後降雨增多，濕氣漸重。建議適度食用「茯苓」或「薏仁」以健脾袪濕。今日適合前往近郊步道，尋找剛剛冒頭的新鮮藥草。
+            </p>
+            <div class="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center">
+                <div class="flex -space-x-2">
+                    <img src="https://picsum.photos/seed/u1/40/40" class="w-6 h-6 rounded-full border-2 border-white">
+                    <img src="https://picsum.photos/seed/u2/40/40" class="w-6 h-6 rounded-full border-2 border-white">
+                    <img src="https://picsum.photos/seed/u3/40/40" class="w-6 h-6 rounded-full border-2 border-white">
+                    <div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[8px]">+12</div>
+                </div>
+                <button class="text-[#2D5A27] text-xs font-bold" data-goto="p5">查看附近的採集者 <i class="fa-solid fa-chevron-right ml-1"></i></button>
+            </div>
+        </section>
+
+        <!-- Mission Radar Visual Area -->
+        <section class="relative py-4">
+            <div class="flex justify-between items-center mb-4 px-1">
+                <h2 class="serif text-lg font-bold text-gray-800">任務雷達 <span class="text-xs font-normal text-gray-400 ml-2">Mission Radar</span></h2>
+                <button class="text-xs text-gray-500" data-goto="p5">切換地圖模式</button>
+            </div>
+            
+            <div class="relative w-full aspect-square max-h-[300px] flex items-center justify-center mx-auto">
+                <!-- Radar Rings -->
+                <div class="absolute inset-0 border border-gray-200 rounded-full"></div>
+                <div class="absolute inset-8 border border-gray-200 rounded-full"></div>
+                <div class="absolute inset-20 border border-gray-200 rounded-full"></div>
+                
+                <!-- Pulsing Core -->
+                <div class="w-16 h-16 bg-[#2D5A27]/10 rounded-full flex items-center justify-center radar-pulse">
+                    <div class="w-4 h-4 bg-[#2D5A27] rounded-full"></div>
+                </div>
+
+                <!-- Detected Points -->
+                <button data-goto="p4" class="absolute top-10 left-1/4 group">
+                    <div class="w-10 h-10 bg-white rounded-2xl shadow-md flex items-center justify-center text-[#2D5A27] border border-gray-100 group-active:scale-95 transition-transform">
+                        <i class="fa-solid fa-cannabis"></i>
+                    </div>
+                    <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap bg-white px-2 py-0.5 rounded-full shadow-sm">艾草 (320m)</span>
+                </button>
+
+                <button data-goto="p4" class="absolute bottom-12 right-8 group">
+                    <div class="w-10 h-10 bg-white rounded-2xl shadow-md flex items-center justify-center text-[#2D5A27] border border-gray-100 group-active:scale-95 transition-transform">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap bg-white px-2 py-0.5 rounded-full shadow-sm">薄荷 (1.2km)</span>
+                </button>
+
+                <button data-goto="p5" class="absolute top-24 right-4 group">
+                    <div class="w-8 h-8 bg-orange-100 rounded-full shadow-md flex items-center justify-center text-orange-600 border border-orange-200 animate-bounce">
+                        <i class="fa-solid fa-location-dot text-xs"></i>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Action Grid -->
+        <section class="grid grid-cols-2 gap-4">
+            <div data-goto="p3" class="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center space-y-2 active:bg-gray-50 cursor-pointer transition-colors">
+                <div class="w-12 h-12 bg-emerald-50 text-[#2D5A27] rounded-full flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <span class="font-bold text-gray-800">尋找藥草</span>
+                <span class="text-[10px] text-gray-400">探索 24 節氣圖譜</span>
+            </div>
+            <div data-goto="p6" class="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center space-y-2 active:bg-gray-50 cursor-pointer transition-colors">
+                <div class="w-12 h-12 bg-amber-50 text-amber-700 rounded-full flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <span class="font-bold text-gray-800">今日特選</span>
+                <span class="text-[10px] text-gray-400">節氣專屬好物</span>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="space-y-3">
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">最近瀏覽</h3>
+            <div class="flex gap-4 overflow-x-auto no-scrollbar py-1">
+                <div data-goto="p4" class="min-w-[140px] bg-white rounded-2xl p-3 flex items-center gap-3 border border-gray-100 shadow-sm active:scale-95 transition-transform">
+                    <img src="https://picsum.photos/seed/herb1/80/80" class="w-10 h-10 rounded-lg object-cover">
+                    <div>
+                        <p class="text-sm font-bold text-gray-800">當歸</p>
+                        <p class="text-[10px] text-gray-400">補血活血</p>
+                    </div>
+                </div>
+                <div data-goto="p4" class="min-w-[140px] bg-white rounded-2xl p-3 flex items-center gap-3 border border-gray-100 shadow-sm active:scale-95 transition-transform">
+                    <img src="https://picsum.photos/seed/herb2/80/80" class="w-10 h-10 rounded-lg object-cover">
+                    <div>
+                        <p class="text-sm font-bold text-gray-800">黃耆</p>
+                        <p class="text-[10px] text-gray-400">補氣固表</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-gray-100 px-6 py-3 flex justify-between items-center z-50">
+        <button data-goto="p2" class="flex flex-col items-center text-[#2D5A27]">
+            <i class="fa-solid fa-house-chimney text-xl"></i>
+            <span class="text-[10px] mt-1 font-bold">首頁</span>
+        </button>
+        <button data-goto="p3" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-book-medical text-xl"></i>
+            <span class="text-[10px] mt-1">圖鑑</span>
+        </button>
+        <div class="relative -mt-12">
+            <button data-goto="p8" class="w-14 h-14 bg-[#1B3022] text-white rounded-full flex items-center justify-center float-btn shadow-lg border-4 border-[#FDFDFB]">
+                <i class="fa-solid fa-qrcode text-xl"></i>
+            </button>
+        </div>
+        <button data-goto="p6" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-bag-shopping text-xl"></i>
+            <span class="text-[10px] mt-1">商城</span>
+        </button>
+        <button data-goto="p9" class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-user text-xl"></i>
+            <span class="text-[10px] mt-1">會員</span>
+        </button>
+    </nav>
+
+    <script>
+        // Navigation Logic
+        document.querySelectorAll('[data-goto]').forEach(el => {
+            el.addEventListener('click', () => {
+                const targetId = el.getAttribute('data-goto');
+                console.log(`Navigating to ${targetId}`);
+                // In a real app, logic would trigger page transitions here.
+                // For this prototype, we assume other pages are available as specified.
+            });
+        });
+
+        // Simple pulse interaction for radar points
+        document.querySelectorAll('.radar-point').forEach(point => {
+            point.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Visual feedback
+                point.style.transform = 'scale(0.8)';
+                setTimeout(() => point.style.transform = 'scale(1)', 100);
+            });
+        });
+    </script>
+
+
+<script>
+  // Pro Prototype - Static Navigation Shim
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-goto]');
+      if (target) {
+        e.preventDefault();
+        const pageId = target.getAttribute('data-goto');
+        // Navigate to the corresponding HTML file
+        window.location.href = pageId + '.html';
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
+```
